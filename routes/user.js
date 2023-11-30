@@ -12,6 +12,8 @@ router.get('/categories', () => {
   });
 
 
+
+
 router.post('/auth/login',(req, res, next) =>{
   (async function (){
     let serverResponse = { status: "Não Autenticado", response: {}, token: {} }

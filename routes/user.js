@@ -27,7 +27,6 @@ router.post('/auth/login',(req, res, next) =>{
     var hash = bcrypt.hashSync(req.body.password, 8);
 
     if (typeof existsUserName != "undefined"){
-      console.log(existsUserName);
     if(existsUserName.Active == false){
       serverResponse.status = "A conta ainda não foi validada";
       res

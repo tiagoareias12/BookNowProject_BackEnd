@@ -1,0 +1,36 @@
+{
+  "name": "localtibackend",
+  "version": "1.0.0",
+  "description": "\"# LocalTI\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiagoareias/LocalTIBackEnd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiagoareias/LocalTIBackEnd/issues"
+  },
+  "homepage": "https://github.com/tiagoareias/LocalTIBackEnd#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.0.0",
+    "express-validator": "^5.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^6.2.0",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.7.0",
+    "nodemailer": "^6.3.0",
+    "pg": "^8.11.3",
+    "randomstring": "^1.3.0",
+    "sequelize": "^5.18.4",
+    "uuid": "^9.0.1"
+  }
+}

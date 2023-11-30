@@ -14,7 +14,6 @@ router.get('/categories', () => {
 
 router.post('/auth/login',(req, res, next) =>{
   (async function (){
-    console.log(req.body);
     let serverResponse = { status: "Não Autenticado", response: {}, token: {} }
     var existsUserName;
     var username = req.body.username;

@@ -35,9 +35,6 @@ router.post('/auth/login',(req, res, next) =>{
       return false;
     }
 
-    console.log(hash);
-    console.log(existsUserName.Password);
-
     //se não existir esse utilizador ou a password estiver errada
     if (!bcrypt.compareSync(req.body.password, existsUserName.Password)) {
         serverResponse.status = "Username ou password errados";

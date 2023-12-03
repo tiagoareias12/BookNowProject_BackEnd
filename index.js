@@ -9,6 +9,8 @@ var express = require('express'),
 
 var cors = require('cors');
 var user = require("./routes/user");
+var data = require("./routes/data");
+
 var app = express()
 
 app.use(cors());
@@ -16,6 +18,7 @@ app.use(expressValidator());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(user);
+app.use(data);
 
 // app.get('/user/teste2', function (req, res) {
 //     console.log("/user request called");

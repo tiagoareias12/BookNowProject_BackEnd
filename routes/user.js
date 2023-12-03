@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var jwt = require('jsonwebtoken');
+var jwt = require('jose');
 let pool = require('../db');
 const { v4: uuidv4 } = require('uuid');
 var randomstring = require('randomstring');
@@ -23,8 +23,12 @@ router.post('/auth/login',(req, res, next) =>{
     //verficar se existe algum utilizador na base de dados com o  username inserido
     let existsUserNameQuery = await pool.query('SELECT * FROM "DB"."Users" where "Username" = $1', [username]);
     existsUserName = existsUserNameQuery.rows[0];
+
     console.log(typeof existsUserName);
-    var hash = bcrypt.hashSync(req.body.password, 8);
+    console.log('existsUserName');
+    console.log(existsUserName);
+
+
 
     if (typeof existsUserName != "undefined"){
     if(existsUserName.Active == false){
@@ -42,13 +46,28 @@ router.post('/auth/login',(req, res, next) =>{
     //se existir o utilizador e a password bater certo
     else {
         // create a token
-        var token = jwt.sign({
-            userID: existsUserName.userID, username: existsUserName.username,
-            nome: existsUserName.nome, isAdmin: existsUserName.isAdmin
-        }, 'secret', {
-                expiresIn: 600 // expires in 10 minutos ***PARA TESTES****
+        // var token = await new jwt.SignJWT({
+        //     userID: existsUserName.userID, username: existsUserName.username,
+        //     nome: existsUserName.nome, isAdmin: existsUserName.isAdmin
+        // }, 'secret', {
+        //         expiresIn: 600 // expires in 10 minutos ***PARA TESTES****
 
-            });
+        //     });
+        console.log('existsUserName');
+
+        console.log(existsUserName);
+        const alg = 'HS256';
+        const secret = new TextEncoder().encode(
+          "Swe4g7c?UBm5Nrd96vhsVDtkyJFbqKMTm!TMw5BDRLtaCFAXNvbq?s4rGKQSZnUP"
+          );
+        const token = await new jwt.SignJWT({ 'username':existsUserName.Username,'isAdmin': existsUserName.IsAdmin })
+  .setProtectedHeader({ alg })
+  .setIssuedAt()
+  .setIssuer('urn:example:issuer')
+  .setAudience('urn:example:audience')
+  .setExpirationTime('2h')
+  .sign(secret)
+            console.log(token);
         serverResponse.status = "Autenticado";
         serverResponse.response = existsUserName;
         serverResponse.token = token;

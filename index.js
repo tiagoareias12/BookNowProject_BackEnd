@@ -10,7 +10,7 @@ var express = require('express'),
 var cors = require('cors');
 var user = require("./routes/user");
 var data = require("./routes/data");
-
+var gestao = require("./routes/gestao");
 var app = express()
 
 app.use(cors());
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(user);
 app.use(data);
-
+app.use(gestao);
 // app.get('/user/teste2', function (req, res) {
 //     console.log("/user request called");
 //     res.send('Welcome to GeeksforGeeks');
